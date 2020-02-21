@@ -27,5 +27,7 @@ while jsonmodprods:
         r = requests.get(mod_url)
         jsonmodprods = json.loads(r.content)
         count = count + 1
+        if count == 6:
+            count = 7
     except ConnectionError:
         jsonmodprods = None
