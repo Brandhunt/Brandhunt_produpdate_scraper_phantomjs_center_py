@@ -14,12 +14,9 @@ import requests
 from requests.exceptions import ConnectionError
 import json
 
-mod_url = os.environ['MORPH_MODULE_1_URL']
-r = requests.get(mod_url)
-jsonmodprods = json.loads(r.content)
-
-count = 2
-while jsonmodprods:
+jsonmodprods = []
+count = 1
+while jsonmodprods is not None:
     for prod in jsonmodprods:
         scraperwiki.sqlite.save(unique_keys=['productid'], data=prod)
     try:
