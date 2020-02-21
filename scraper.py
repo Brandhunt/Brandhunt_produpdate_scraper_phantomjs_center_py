@@ -1,24 +1,31 @@
-# This is a template for a Python scraper on morph.io (https://morph.io)
-# including some code snippets below that you should find helpful
+#!/usr/bin/env python
+# -*- coding: utf-8 -*- 
 
-# import scraperwiki
-# import lxml.html
-#
-# # Read in a page
-# html = scraperwiki.scrape("http://foo.com")
-#
-# # Find something on the page using css selectors
-# root = lxml.html.fromstring(html)
-# root.cssselect("div[align='left']")
-#
-# # Write out to the sqlite database using scraperwiki library
-# scraperwiki.sqlite.save(unique_keys=['name'], data={"name": "susan", "occupation": "software developer"})
-#
-# # An arbitrary query against the database
-# scraperwiki.sql.select("* from data where 'name'='peter'")
+#  /|\/|\/|\/|\/|\/|\/|\/|\/|\/|\/|\/|\/|\/|\/|\/|\/|\  
+# <   -  Brandhunt Product Update Scraper Module  -   >
+#  \|/\|/\|/\|/\|/\|/\|/\|/\|/\|/\|/\|/\|/\|/\|/\|/\|/
 
-# You don't have to do things with the ScraperWiki and lxml libraries.
-# You can use whatever libraries you want: https://morph.io/documentation/python
-# All that matters is that your final data is written to an SQLite database
-# called "data.sqlite" in the current working directory which has at least a table
-# called "data".
+# --- IMPORT SECTION --- #
+
+import os
+os.environ['SCRAPERWIKI_DATABASE_NAME'] = 'sqlite:///data.sqlite'
+
+import requests
+from requests.exceptions import ConnectionError
+import json
+
+mod_url = os.environ['MORPH_MODULE_1_URL']
+r = requests.get(mod_url)
+jsonmodprods = json.loads(r.content)
+
+count = 2
+while jsonmodprods:
+    for prod in jsonmodprods:
+        scraperwiki.sqlite.save(unique_keys=['productid'], data=prod)
+    try:
+        mod_url = os.environ['MORPH_MODULE_' + str(count) + '_URL']
+        r = requests.get(mod_url)
+        jsonmodprods = json.loads(r.content)
+        count = count + 1
+    except ConnectionError:
+        jsonmodprods = None
