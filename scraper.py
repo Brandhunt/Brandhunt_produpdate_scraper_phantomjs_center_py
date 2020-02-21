@@ -27,7 +27,7 @@ while jsonmodprods is not None:
         if count == 6:
             count = 7
     except ConnectionError:
-        print('MODULE URL NO LONGER FOUND AT COUNT ' + count + ': STOPPING NOW!')
+        print('MODULE URL NO LONGER FOUND AT COUNT ' + str(count) + ': STOPPING NOW!')
         jsonmodprods = None
     except:
         print(traceback.format_exc())
