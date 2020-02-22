@@ -16,7 +16,7 @@ import json
 
 jsonmodprods = []
 count = 1
-loadedjson = ''
+loadedjson = 'HEPP'
 
 orig_offset = os.environ['MORPH_MODULE_OFFSET']
 offset_incr = os.environ['MORPH_MODULE_OFFSET_INCR']
@@ -28,7 +28,7 @@ while jsonmodprods is not None:
             scraperwiki.sqlite.save(unique_keys=['productid'], data=p_data)
     try:
         while loadedjson:
-            if loadedjson != '':
+            if loadedjson != 'HEPP':
                 jsonmodprods.append(json.loads(loadedurl.content))
             mod_url = os.environ['MORPH_MODULE_' + str(count) + '_URL'] + offset
             offset = str(int(offset) + int(offset_incr))
