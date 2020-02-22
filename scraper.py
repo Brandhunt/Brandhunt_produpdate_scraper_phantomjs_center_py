@@ -7,12 +7,13 @@
 
 # --- IMPORT SECTION --- #
 
+
+import json
 import os
 os.environ['SCRAPERWIKI_DATABASE_NAME'] = 'sqlite:///data.sqlite'
-
 import requests
 from requests.exceptions import ConnectionError
-import json
+import scraperwiki
 
 jsonmodprods = []
 count = 1
