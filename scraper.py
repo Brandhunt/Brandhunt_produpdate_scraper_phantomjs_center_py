@@ -33,8 +33,7 @@ while jsonmodprods is not None:
             if loadedjson != 'HEPP':
                 #jsonmodprods.append(loadedjson)
                 for prod in loadedjson:
-                    for p_data in prods:
-                        scraperwiki.sqlite.save(unique_keys=['productid'], data=p_data)
+                    scraperwiki.sqlite.save(unique_keys=['productid'], data=prod)
             mod_url = os.environ['MORPH_MODULE_' + str(count) + '_URL'] + offset
             offset = str(int(offset) + int(offset_incr))
             #print('Current offset for module ' + str(count) + ': ' + offset)
