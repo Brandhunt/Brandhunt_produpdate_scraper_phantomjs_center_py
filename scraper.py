@@ -29,7 +29,7 @@ while jsonmodprods is not None:
     try:
         while loadedjson:
             if loadedjson != 'HEPP':
-                jsonmodprods.append(json.loads(loadedurl.content))
+                jsonmodprods.append(json.loads(loadedjson))
             mod_url = os.environ['MORPH_MODULE_' + str(count) + '_URL'] + offset
             offset = str(int(offset) + int(offset_incr))
             print('Current offset for module ' + str(count) + ': ' + offset)
