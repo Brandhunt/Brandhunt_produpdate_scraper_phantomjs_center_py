@@ -15,6 +15,7 @@ import requests
 from requests.exceptions import ConnectionError
 import scraperwiki
 import time
+import traceback
 
 jsonmodprods = []
 count = 1
