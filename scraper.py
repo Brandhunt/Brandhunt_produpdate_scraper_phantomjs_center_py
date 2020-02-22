@@ -16,14 +16,26 @@ import json
 
 jsonmodprods = []
 count = 1
+loadedjson = ''
+
+orig_offset = os.environ['MORPH_MODULE_OFFSET']
+offset_incr = os.environ['MORPH_MODULE_OFFSET_INCR']
+offset = orig_offset
+
 while jsonmodprods is not None:
-    for prod in jsonmodprods:
-        scraperwiki.sqlite.save(unique_keys=['productid'], data=prod)
+    for prods in jsonmodprods:
+        for p_data in prods:
+            scraperwiki.sqlite.save(unique_keys=['productid'], data=p_data)
     try:
-        mod_url = os.environ['MORPH_MODULE_' + str(count) + '_URL']
-        r = requests.get(mod_url)
-        jsonmodprods = json.loads(r.content)
+        while loadedjson:
+            if loadedjson != '':
+                jsonmodprods.append(json.loads(loadedurl.content))
+            mod_url = os.environ['MORPH_MODULE_' + str(count) + '_URL'] + offset
+            offset = str(int(offset) + int(offset_incr))
+            r = requests.get(mod_url)
+            loadedjson = json.loads(r.content)
         count = count + 1
+        offset = orig_offset
     except ConnectionError:
         print('MODULE URL NO LONGER FOUND AT COUNT ' + str(count) + ': STOPPING NOW!')
         jsonmodprods = None
