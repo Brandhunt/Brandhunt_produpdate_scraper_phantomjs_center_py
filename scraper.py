@@ -27,7 +27,7 @@ while jsonmodprods is not None:
     #for prods in jsonmodprods:
     #    for p_data in prods:
     #        scraperwiki.sqlite.save(unique_keys=['productid'], data=p_data)
-    jsonmodprods = []
+    #jsonmodprods = []
     try:
         while loadedjson:
             if loadedjson != 'HEPP':
