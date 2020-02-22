@@ -41,9 +41,10 @@ while jsonmodprods is not None:
             #print('Current offset for module ' + str(count) + ': ' + offset)
             r = requests.get(mod_url)
             loadedjson = json.loads(r.content)
-        print('Currently importing prod. info from module ' + str(count) + '...')
+        print('Done importing products from module ' + str(count) + '!')
         count = count + 1
         offset = orig_offset
+        loadedjson = 'HEPP'
     except ConnectionError:
         print('MODULE URL NO LONGER FOUND AT COUNT ' + str(count) + ': STOPPING NOW!')
         jsonmodprods = None
