@@ -14,6 +14,7 @@ os.environ['SCRAPERWIKI_DATABASE_NAME'] = 'sqlite:///data.sqlite'
 import requests
 from requests.exceptions import ConnectionError
 import scraperwiki
+import time
 
 jsonmodprods = []
 count = 1
