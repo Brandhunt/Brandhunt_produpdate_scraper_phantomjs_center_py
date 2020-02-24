@@ -19,6 +19,7 @@ import traceback
 
 jsonmodprods = []
 count = int(os.environ['MORPH_MODULE_NUM_OFFSET'])
+maxcount = int(os.environ['MORPH_MODULE_MAXNUM_OFFSET'])
 loadedjson = 'HEPP'
 
 orig_offset = os.environ['MORPH_MODULE_OFFSET']
@@ -44,6 +45,8 @@ while jsonmodprods is not None:
             loadedjson = json.loads(r.content)
         print('Done importing products from module ' + str(count) + '!')
         count = count + 1
+        if count >= maxcount and maxcount > 0:
+            break
         offset = orig_offset
         loadedjson = 'HEPP'
     except ConnectionError:
