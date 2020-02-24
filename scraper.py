@@ -18,7 +18,7 @@ import time
 import traceback
 
 jsonmodprods = []
-count = 1
+count = os.environ['MORPH_MODULE_NUM_OFFSET']
 loadedjson = 'HEPP'
 
 orig_offset = os.environ['MORPH_MODULE_OFFSET']
